@@ -12,25 +12,19 @@
 
 name: Postman testing basics
 
-
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-
   build:
-  
     runs-on: ubuntu-latest
 
-
     steps:
-
       - uses: actions/checkout@v4
       - name: Create directory
       - run: |
             mkdir reports
-
 
       - name: Install node
         uses: actions/checkout@v4
@@ -46,7 +40,7 @@ jobs:
         run: newman run "API testing basics.postman_collection" --environment "Tests.postman_environment" --reporters htmlextra --reporter-htmlextra-export "reports/extra-report.html" || echo ""
 
       - name: Publish report as Artifact
-        uses: action/upload-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
             name: extra-report
             path: reports
